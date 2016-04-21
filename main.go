@@ -1,24 +1,17 @@
 package main
 
-import (
-	"fmt"
-	"./packageA"
-)
+type LocalInterface interface {
+	SomeMethod(string) error
+	SomeOtherMethod(string) error
+}
 
-type SomeStruct struct {
-	packageA.SomeInterface
+type LocalStruct struct {
+	LocalInterface
 	myOwnField string
 }
 
-func (b *SomeStruct) SomeMethod(a string) error {
-	fmt.Println(a)
-	return nil
-}
-
 func main() {
-	a := SomeStruct{myOwnField:"test"}
+	var localInterface LocalInterface = &LocalStruct{myOwnField:"test"}
 	
-	var b packageA.SomeInterface = &a
-	b.SomeMethod("calling some method")
-	b.SomeOtherMethod("test")
+	localInterface.SomeMethod("calling some method")
 }

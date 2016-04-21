@@ -1,6 +1,6 @@
 package packageA
 
-type SomeInterface interface {
+type SomePackageInterface interface {
 	SomeMethod(string) error
 	SomeOtherMethod(string) error
 }
